@@ -1,0 +1,14 @@
+﻿Sub Test1
+  TestedApps.Orders.Run
+  Dim orders
+  Dim orderForm
+  Dim textBox
+  Set orders = Sys.process("Orders")
+  orders.Maximize
+  Set mainForm = orders.WinFormsObject("MainForm")
+  Call mainForm.MainMenu.Click("Orders|New order...")
+  Set orderForm = orders.WinFormsObject("OrderForm")
+  Set textBox = orderForm.FindChild("Name", "*Customer*", 2000)
+  Call textBox.SetText("Dileep")
+  orderForm.WinFormsObject("ButtonOK").ClickButton
+End Sub
